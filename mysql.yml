@@ -1,10 +1,10 @@
 ---
 - hosts: php
   vars:
-    mysql_root_password: 123456
+      mysql_root_password: 123456
   tasks:
   - name: Instala MySQL
-    apt:
+  apt:
 	name: {{ item }}
     	state: present
     	sudo: yes

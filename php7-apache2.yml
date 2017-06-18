@@ -21,6 +21,12 @@
     apt:
         update_cache: yes
 
+  - name: Instala
+    apt:
+	name: git
+	state: present
+	install_recommends: yes
+
   - name: Instala Apache 2
     apt:
         name: apache2
