@@ -1,0 +1,9 @@
+---
+- hosts: php
+  tasks:
+    - name: Habilitar modulo proxy_fcgi
+	apache2_module:
+	    name: {{items}}
+	with_items:
+	    - proxy_fcgi
+	    - php7.0-fpm
