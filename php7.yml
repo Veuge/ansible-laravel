@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: True
+  roles:
+    - { role: init }
+    - { role: php7-apache2 }

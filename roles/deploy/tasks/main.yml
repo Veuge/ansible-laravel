@@ -1,0 +1,23 @@
+---
+    - name: Clone laravel project
+      git:
+          clone: yes
+          repo: https://github.com/Veuge/somerepo.git
+          dest: /var/www/html
+      register: cloned
+      notify:
+          - Apache config file
+
+    - name: Change group ownership in project directory
+      file:
+          path: /var/www/html/somerepo
+          state: directory
+          recurse: yes
+          group: www-data
+
+    - name: Change permissions in storage directory
+      file:
+          path: /var/www/html/somerepo/storage
+          state: directory
+          recurse: yes
+          mode: 0775

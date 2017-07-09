@@ -35,3 +35,12 @@
       service:
           name: apache2
           state: reloaded
+
+    # - name: Apache config file
+    #   template:
+    #       src: templates/apache.conf
+    #       dest: "/etc/apache2/sites-available/apache.conf"
+    #       mode: 0755
+    #   when: cloned|success
+    #   register: configured
+    #   notify:
