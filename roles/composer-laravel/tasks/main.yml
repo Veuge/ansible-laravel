@@ -1,0 +1,22 @@
+---
+    - name: Download composer installer
+      get_url:
+          url: https://getcomposer.org/installer
+          dest: composer-setup.php
+          mode: 0755
+
+    - name: Execute installer
+      command:
+          "php composer-setup.php"
+
+    - name: Unlink installer
+      command:
+          "php -r 'unlink('composer-setup.php');'"
+
+    - name: Install composer globally
+      command:
+          "mv composer.phar /usr/local/bin/composer"
+
+    - name: Install laravel
+      command:
+          "composer global require 'laravel/installer'"

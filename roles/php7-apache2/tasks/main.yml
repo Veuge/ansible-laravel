@@ -1,0 +1,37 @@
+---
+    - name: Install apache2 and php7
+      apt:
+          name: "{{ item }}"
+          install_recommends: yes
+          state: present
+      with_items:
+          - apache2
+          - libapache2-mod-php7.0
+          - php-pear
+          - php7.0
+          - php7.0-cgi
+          - php7.0-cli
+          - php7.0-common
+          - php7.0-fpm
+          - php7.0-gd
+          - php7.0-json
+          - php7.0-mysql
+          - php7.0-readline
+          - php-mbstring
+
+    - name: Enable php modules in apache2
+      apache2_module:
+          name: "{{ item }}"
+          state: present
+      with_items:
+          - proxy_fcgi
+          - setenvif
+
+    - name: Enable php configs in apache2
+      command:
+          "a2enconf php7.0-fpm"
+
+    - name: Reloads apache2 services
+      service:
+          name: apache2
+          state: reloaded

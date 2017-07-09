@@ -1,0 +1,30 @@
+---
+    - name: Add dotdeb repository
+      apt_repository:
+          repo: deb http://packages.dotdeb.org jessie all
+          state: present
+
+    - name: Add dotdeb src repository
+      apt_repository:
+          repo: deb-src http://packages.dotdeb.org jessie all
+          state: present
+
+    - name: Add dotdeb key
+      apt_key:
+          url: https://www.dotdeb.org/dotdeb.gpg
+          state: present
+
+    - name: Update packages list
+      apt:
+          update_cache: yes
+
+    - name: Install common packages
+      apt:
+          - name: "{{ item }}"
+          - state: present
+          - install_recommends: yes
+      with_item:
+          - git
+          - build-essential
+          - ntp
+          - ntpdate
